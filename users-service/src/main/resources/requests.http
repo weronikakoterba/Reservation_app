@@ -1,0 +1,14 @@
+### Rejestracja użytkownika
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+  "username": "janedoe",
+  "password": "password123"
+}
+### Logowanie użytkownika
+POST http://localhost:8080/users/login
+Content-Type: application/x-www-form-urlencoded
+
+### Pobieranie danych aktualnie zalogowanego użytkownika
+GET http://localhost:8080/users/me
