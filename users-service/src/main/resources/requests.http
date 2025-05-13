@@ -3,12 +3,18 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "janedoe",
-  "password": "password123"
+  "username": "janedoe22",
+  "password": "password1234"
 }
 ### Logowanie użytkownika
 POST http://localhost:8080/users/login
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
+{
+  "username": "janedoe22",
+  "password": "password1234"
+}
 ### Pobieranie danych aktualnie zalogowanego użytkownika
 GET http://localhost:8080/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lZG9lMjIiLCJpYXQiOjE3NDcxNzI0NzUsImV4cCI6MTc0NzE3NjA3NX0.69jPWYQrnr3skgKGgSyKY80knlI_5UXFls07IE5LdMo
+

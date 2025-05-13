@@ -1,8 +1,16 @@
 package org.example.usersservice;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.nio.charset.StandardCharsets;
+
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/users")
@@ -21,25 +29,41 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
+
         User user = userService.findByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
-            return jwtUtil.generateToken(username);
+            String token = jwtUtil.generateToken(username);
+            return ResponseEntity.ok().body(Map.of("token", token));
         }
-        return "Invalid credentials";
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
     }
+
 
     @GetMapping("/me")
     public User getCurrentUser(HttpServletRequest request) {
-        // 🔍 Pobranie nagłówka Authorization
         String authHeader = request.getHeader("Authorization");
+
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String jwt = authHeader.substring(7);
-            String username = jwtUtil.extractUsername(jwt);
-            if (username != null) {
-                return userService.findByUsername(username);
+
+            try {
+                Claims claims = jwtUtil.extractClaims(jwt);
+                String username = claims.getSubject();
+
+                if (username != null) {
+                    User user = userService.findByUsername(username);
+                    if (user != null) {
+                        return user;
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Błąd autoryzacji: " + e.getMessage());
             }
         }
+
         throw new RuntimeException("User not authenticated");
     }
 }
