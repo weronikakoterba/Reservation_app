@@ -1,4 +1,4 @@
-package org.example.usersservice;
+package org.example.usersservice.user.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,4 +19,7 @@ public class User {
 
     private String username;
     private String password;
+    private String email;
+
+
 }

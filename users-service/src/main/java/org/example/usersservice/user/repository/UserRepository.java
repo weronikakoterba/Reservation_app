@@ -1,7 +1,7 @@
-package org.example.usersservice;
+package org.example.usersservice.user.repository;
 
+import org.example.usersservice.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 @Repository

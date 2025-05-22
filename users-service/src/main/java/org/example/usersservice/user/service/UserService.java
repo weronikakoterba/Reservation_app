@@ -1,5 +1,7 @@
-package org.example.usersservice;
+package org.example.usersservice.user.service;
 
+import org.example.usersservice.user.model.User;
+import org.example.usersservice.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,5 +35,13 @@ public class UserService implements UserDetailsService  {
                 .password(user.getPassword())
                 .authorities("USER")
                 .build();
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    public void delete(User user) {
+        userRepository.delete(user);
     }
 }

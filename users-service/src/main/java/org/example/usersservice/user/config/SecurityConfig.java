@@ -1,5 +1,6 @@
-package org.example.usersservice;
+package org.example.usersservice.user.config;
 
+import org.example.usersservice.user.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -1,4 +1,4 @@
-package org.example.usersservice;
+package org.example.usersservice.user.dto;
 
 
 import lombok.Getter;

@@ -3,7 +3,7 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "janedoe22",
+  "username": "jjjzam",
   "password": "password1234"
 }
 ### Logowanie użytkownika
@@ -11,10 +11,24 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "janedoe22",
+  "username": "jjjzam",
   "password": "password1234"
 }
 ### Pobieranie danych aktualnie zalogowanego użytkownika
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lZG9lMjIiLCJpYXQiOjE3NDcxNzI0NzUsImV4cCI6MTc0NzE3NjA3NX0.69jPWYQrnr3skgKGgSyKY80knlI_5UXFls07IE5LdMo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5MzM4MTcsImV4cCI6MTc0NzkzNzQxN30.zESsZDdBvf-o8A1E8oAEM7Se5p5MH8iwv-6zSwqIiIE
+
+### Zmiana hasła
+POST http://localhost:8080/users/change-password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5MzM4MTcsImV4cCI6MTc0NzkzNzQxN30.zESsZDdBvf-o8A1E8oAEM7Se5p5MH8iwv-6zSwqIiIE
+
+{
+  "oldPassword": "password1234",
+  "newPassword": "newpassword456"
+}
+
+### Usuwanie konta
+DELETE http://localhost:8080/users/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5MzM4MTcsImV4cCI6MTc0NzkzNzQxN30.zESsZDdBvf-o8A1E8oAEM7Se5p5MH8iwv-6zSwqIiIE
 
