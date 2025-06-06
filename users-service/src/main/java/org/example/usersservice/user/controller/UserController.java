@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -111,6 +112,16 @@ public class UserController {
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Old password is incorrect");
+    }
+
+    @GetMapping("/username/{username}")
+    public User getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username);
+    }
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "hej coś";
     }
 
 }
