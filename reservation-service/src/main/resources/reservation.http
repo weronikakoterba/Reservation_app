@@ -1,0 +1,72 @@
+### Dodaj nową rezerwację
+POST http://localhost:8081/reservations
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "startTime": "2025-06-01T10:00:00",
+  "serviceType": "HYBRID_NAILS",
+  "description": "Na urodziny"
+}
+
+###
+
+POST http://localhost:8081/reservations
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "startTime": "2025-06-01T10:30:00",
+  "serviceType": "CLASSIC_MANICURE",
+  "description": "Wzorki"
+}
+
+###
+
+### Pobierz rezerwacje dla użytkownika 1
+GET http://localhost:8081/reservations/user/1
+
+###
+
+### Usuń rezerwację o ID 1
+DELETE http://localhost:8081/reservations/4
+
+
+### 1. Rejestracja użytkownika
+POST http://localhost:8080/users/register
+Content-Type: application/json
+
+{
+  "username": "janek11",
+  "email": "janek@example.com",
+  "password": "test123"
+}
+
+### 2. Logowanie i pobranie tokena
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "username": "janek11",
+  "password": "test123"
+}
+
+### 3. Uzyskaj dane użytkownika z tokena (upewnij się, że Authorization ma token)
+GET http://localhost:8080/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExIiwiaWF0IjoxNzQ5MjUxMTc1LCJleHAiOjE3NDkyNTQ3NzV9.R3Mf2_x5PFLOR2-3KeyGMPDlr_Ua8zGF07_Iji6YVfI
+
+### 4. Utworzenie rezerwacji
+POST http://localhost:8081/reservations
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExIiwiaWF0IjoxNzQ5MjUxMTc1LCJleHAiOjE3NDkyNTQ3NzV9.R3Mf2_x5PFLOR2-3KeyGMPDlr_Ua8zGF07_Iji6YVfI
+
+{
+  "startTime": "2025-06-01T10:30:00",
+  "serviceType": "CLASSIC_MANICURE",
+  "description": "Wzorki"
+}
+
+### 5. Pobranie rezerwacji użytkownika (np. ID = 1)
+GET http://localhost:8081/reservations/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazEiLCJpYXQiOjE3NDkyNDk2NzksImV4cCI6MTc0OTI1MzI3OX0.GO0HQHtqWVI0JFnbsQm4xjdis6JIr-MohdiEn_PCNjs
+

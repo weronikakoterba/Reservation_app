@@ -21,21 +21,22 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
-      - "8081:8080"
+      - "8081:8081"
     networks:
       - reservation-net
 
   users-service:
-      depends_on:
-        - userdb
-      environment:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://reservation-db:5432/userdb
-        SPRING_DATASOURCE_USERNAME: postgres
-        SPRING_DATASOURCE_PASSWORD: postgres
-      ports:
-        - "8080:8080"
-      networks:
-        - reservation-net
+    image: users-service
+    depends_on:
+      - reservation-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://reservation-db:5432/reservation_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - reservation-net
 
 networks:
   reservation-net:

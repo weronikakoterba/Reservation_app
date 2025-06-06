@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-service
+  namespace: reservation-app
 spec:
   replicas: 1
   selector:
@@ -14,28 +15,27 @@ spec:
     spec:
       containers:
         - name: users-service
-          image: users-service:latest
-          imagePullPolicy: Never
-          ports:
-          - containerPort: 8080
+          image: weronikakoterba/users-service:latest
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres:5432/userdb
+              value: jdbc:postgresql://reservation-db:5432/reservation_db
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
               value: postgres
-
+          ports:
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: users-service
+  namespace: reservation-app
 spec:
-  type: NodePort
   selector:
     app: users-service
   ports:
-    - port: 8080
+    - protocol: TCP
+      port: 8080
       targetPort: 8080
-      nodePort: 30082
+  type: ClusterIP

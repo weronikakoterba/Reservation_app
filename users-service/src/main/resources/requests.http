@@ -3,23 +3,23 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "wkoterba1",
+  "username": "hania",
   "password": "password12345"
 }
 ### znajdz użytkownika
-GET http://localhost:8080/users/username/wkoterba1
+GET http://localhost:8080/users/username/hania
 
 ### Logowanie użytkownika
 POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "wkoterba",
-  "password": "password1234"
+  "username": "hania",
+  "password": "password12345"
 }
 ### Pobieranie danych aktualnie zalogowanego użytkownika
-GET http://localhost:8082/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5NTY4NDQsImV4cCI6MTc0Nzk2MDQ0NH0.h3tEVyAV3ScMD0xy3-ADNBLHXfORvZbwBKIzLEYA9oE
+GET http://localhost:8080/users/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYSIsImlhdCI6MTc0OTI0Njc1MiwiZXhwIjoxNzQ5MjUwMzUyfQ.Z-w-nj3YTkjsoIEJYy64JhBPUM7B5_dd0bbcJtCLKUE
 
 ### Zmiana hasła
 POST http://localhost:8080/users/change-password
