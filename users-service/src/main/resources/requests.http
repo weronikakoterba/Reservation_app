@@ -3,7 +3,7 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "hania",
+  "username": "hania222",
   "password": "password12345"
 }
 ### znajdz użytkownika
@@ -14,7 +14,7 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "hania",
+  "username": "hania222",
   "password": "password12345"
 }
 ### Pobieranie danych aktualnie zalogowanego użytkownika

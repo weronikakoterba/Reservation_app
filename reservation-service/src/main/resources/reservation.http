@@ -3,7 +3,6 @@ POST http://localhost:8081/reservations
 Content-Type: application/json
 
 {
-  "userId": 1,
   "startTime": "2025-06-01T10:00:00",
   "serviceType": "HYBRID_NAILS",
   "description": "Na urodziny"
@@ -15,21 +14,12 @@ POST http://localhost:8081/reservations
 Content-Type: application/json
 
 {
-  "userId": 2,
+  "price": 45,
   "startTime": "2025-06-01T10:30:00",
   "serviceType": "CLASSIC_MANICURE",
   "description": "Wzorki"
 }
 
-###
-
-### Pobierz rezerwacje dla użytkownika 1
-GET http://localhost:8081/reservations/user/1
-
-###
-
-### Usuń rezerwację o ID 1
-DELETE http://localhost:8081/reservations/4
 
 
 ### 1. Rejestracja użytkownika
@@ -37,7 +27,7 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "janek11",
+  "username": "janek111",
   "email": "janek@example.com",
   "password": "test123"
 }
@@ -47,26 +37,20 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "janek11",
+  "username": "janek111",
   "password": "test123"
 }
 
-### 3. Uzyskaj dane użytkownika z tokena (upewnij się, że Authorization ma token)
-GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExIiwiaWF0IjoxNzQ5MjUxMTc1LCJleHAiOjE3NDkyNTQ3NzV9.R3Mf2_x5PFLOR2-3KeyGMPDlr_Ua8zGF07_Iji6YVfI
+### pobieranie dostępnych slotów
+GET http://localhost:8081/reservations/available
 
-### 4. Utworzenie rezerwacji
-POST http://localhost:8081/reservations
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExIiwiaWF0IjoxNzQ5MjUxMTc1LCJleHAiOjE3NDkyNTQ3NzV9.R3Mf2_x5PFLOR2-3KeyGMPDlr_Ua8zGF07_Iji6YVfI
+### pobieranie slotow danego usera
+GET http://localhost:8081/reservations/user/5
 
-{
-  "startTime": "2025-06-01T10:30:00",
-  "serviceType": "CLASSIC_MANICURE",
-  "description": "Wzorki"
-}
+### rezerwacja slotu przez usera
+PUT http://localhost:8081/reservations/5/bookWithPayment
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
 
-### 5. Pobranie rezerwacji użytkownika (np. ID = 1)
-GET http://localhost:8081/reservations/user/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazEiLCJpYXQiOjE3NDkyNDk2NzksImV4cCI6MTc0OTI1MzI3OX0.GO0HQHtqWVI0JFnbsQm4xjdis6JIr-MohdiEn_PCNjs
-
+### rezygnownowanie ze slotu przez usera
+PUT http://localhost:8081/reservations/5/cancel
+Authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
