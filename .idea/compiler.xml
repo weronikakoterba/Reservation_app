@@ -4,6 +4,7 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Annotation profile for payment-service" enabled="true">
+      <profile name="Annotation profile for notification-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -12,6 +13,7 @@
         </processorPath>
         <module name="users-service" />
         <module name="payment-service" />
+        <module name="notification-service" />
         <module name="reservation-service" />
       </profile>
     </annotationProcessing>
@@ -19,6 +21,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="payment-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
       <module name="reservation-service" options="-parameters" />
       <module name="users-service" options="-parameters" />
     </option>

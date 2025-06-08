@@ -21,7 +21,6 @@ Content-Type: application/json
 }
 
 
-
 ### 1. Rejestracja użytkownika
 POST http://localhost:8080/users/register
 Content-Type: application/json
@@ -54,3 +53,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0O
 ### rezygnownowanie ze slotu przez usera
 PUT http://localhost:8081/reservations/5/cancel
 Authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
+
