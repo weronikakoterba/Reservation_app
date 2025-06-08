@@ -22,4 +22,16 @@ public class UserClient {
 
         return user.getId();
     }
+
+    public String getEmailByUsername(String username) {
+        //String url = "http://users-service.reservation-app/users/username/" + username;
+        String url = "http://localhost:8080/users/username/" + username;
+        UserDTO user = restTemplate.getForObject(url, UserDTO.class);
+
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+        return user.getEmail();
+    }
 }

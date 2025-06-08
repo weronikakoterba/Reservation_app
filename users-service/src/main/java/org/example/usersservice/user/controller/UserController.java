@@ -2,6 +2,8 @@ package org.example.usersservice.user.controller;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import org.example.usersservice.notification.email.EmailNotification;
 import org.example.usersservice.user.dto.ChangePasswordRequest;
 import org.example.usersservice.user.security.JwtUtil;
 import org.example.usersservice.user.dto.LoginRequest;
@@ -18,7 +20,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
+    private final EmailNotification emailNotification;
 
     @Autowired
     private UserService userService;
@@ -29,7 +33,10 @@ public class UserController {
 
     @PostMapping("/register")
     public User register(@RequestBody User user) {
-        return userService.registerUser(user);
+
+        User newUser = userService.registerUser(user);
+        emailNotification.sendEmail(user.getEmail(),"rejestracja");
+        return newUser;
     }
 
     @PostMapping("/login")

@@ -3,8 +3,9 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "hania222",
-  "password": "password12345"
+  "username": "haniaaaa",
+  "password": "password12345",
+  "email": "hania.gibus@gmail.com"
 }
 ### znajdz użytkownika
 GET http://localhost:8080/users/username/hania

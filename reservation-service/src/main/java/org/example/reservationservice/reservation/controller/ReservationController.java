@@ -1,6 +1,7 @@
 package org.example.reservationservice.reservation.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.reservationservice.notification.email.EmailNotification;
 import org.example.reservationservice.payment.dto.PaymentDTO;
 import org.example.reservationservice.payment.transaction.PaymentTransaction;
 import org.example.reservationservice.reservation.dto.ReservationDTO;
@@ -23,6 +24,7 @@ public class ReservationController {
     private final JwtUtil jwtUtil;
     private final UserClient userClient;
     private final PaymentTransaction paymentTransaction;
+    private final EmailNotification emailNotification;
 
     // Admin/Usługodawca tworzy wolny termin
     @PostMapping
@@ -37,17 +39,17 @@ public class ReservationController {
     }
 
     // Użytkownik rezerwuje istniejący slot
-    @PutMapping("/{id}/book")
-    public ResponseEntity<Reservation> book(
-            @PathVariable Long id,
-            @RequestHeader("Authorization") String authHeader) {
-
-        String token = authHeader.substring(7);
-        String username = jwtUtil.extractUsername(token);
-        Long userId = userClient.getUserIdByUsername(username);
-
-        return ResponseEntity.ok(reservationService.bookReservation(id, userId));
-    }
+//    @PutMapping("/{id}/book")
+//    public ResponseEntity<Reservation> book(
+//            @PathVariable Long id,
+//            @RequestHeader("Authorization") String authHeader) {
+//
+//        String token = authHeader.substring(7);
+//        String username = jwtUtil.extractUsername(token);
+//        Long userId = userClient.getUserIdByUsername(username);
+//
+//        return ResponseEntity.ok(reservationService.bookReservation(id, userId));
+//    }
 
     @PutMapping("/{id}/bookWithPayment")
     public ResponseEntity<?> bookWithPayment(
@@ -57,23 +59,26 @@ public class ReservationController {
         String token = authHeader.substring(7);
         String username = jwtUtil.extractUsername(token);
         Long userId = userClient.getUserIdByUsername(username);
+        String email = userClient.getEmailByUsername(username);
 
         // 1. Rezerwacja slota – ale tylko zmiana statusu na PENDING_PAYMENT
         Reservation pendingReservation = reservationService.reservePending(id, userId);
 
         // 2. Symulacja płatności
-        double amount = pendingReservation.getPrice();
+        Double amount = pendingReservation.getPrice();
         PaymentDTO payment = paymentTransaction.processPayment(userId, id, amount);
 
         // 3. Sprawdzenie wyniku płatności
         switch (payment.getStatus()) {
             case SUCCESS:
                 Reservation confirmed = reservationService.confirmReservation(id);
+                emailNotification.sendEmail(email,"Rezerwacja została opłacona");
                 return ResponseEntity.ok(confirmed);
 
             case FAILED:
             case TIMEOUT:
-                reservationService.releaseReservation(id); // zmiana statusu z powrotem na AVAILABLE
+                reservationService.releaseReservation(id);
+                emailNotification.sendEmail(email,"Płatność nie powiodła się. Rezerwacja została anulowana.");
                 return ResponseEntity.badRequest()
                         .body("Płatność nie powiodła się. Rezerwacja została anulowana.");
 
