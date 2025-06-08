@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Bez sesji - czysty JWT
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/register", "/users/login").permitAll() // Te endpointy są publiczne
+                        .requestMatchers("/**").permitAll() // Te endpointy są publiczne
                         .anyRequest().authenticated() // Każdy inny endpoint wymaga JWT
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

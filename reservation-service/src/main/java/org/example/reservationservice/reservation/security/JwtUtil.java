@@ -1,4 +1,4 @@
-package org.example.usersservice.user.security;
+package org.example.reservationservice.reservation.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,12 +19,15 @@ public class JwtUtil {
     private static SecretKey SECRET_KEY;
     private SecretKey secretKey;
 
-    private static final String SECRET = "your-256-bit-secret-your-256-bit-secret";
+    private static final String SECRET = "your-256-bit-secret-your-256-bit-secret"; // minimum 256 bitów (32 znaki)
 
     @PostConstruct
     public void init() {
+        // Inicjalizujemy klucz z zakodowanego Stringa (np. base64 lub UTF-8)
         SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
     }
+
+
 
     public String generateToken(String username) {
         return Jwts.builder()
