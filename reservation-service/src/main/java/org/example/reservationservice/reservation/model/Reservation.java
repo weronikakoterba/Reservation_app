@@ -16,17 +16,10 @@ public class Reservation {
 
     private Long userId;
 
-    @Column(nullable = true)
-    private Double price;
-
     private LocalDateTime startTime;
 
     @Enumerated(EnumType.STRING)
     private ServiceType serviceType;
 
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    private ReservationStatus status;
-
 }

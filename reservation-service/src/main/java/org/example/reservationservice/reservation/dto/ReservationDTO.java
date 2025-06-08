@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Builder
 public class ReservationDTO {
     private Long userId;
-    private Double price;
     private LocalDateTime startTime;
     private ServiceType serviceType;
     private String description;

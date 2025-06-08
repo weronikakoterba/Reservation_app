@@ -1,8 +1,5 @@
 package org.example.reservationservice.reservation.model;
 
-import lombok.Getter;
-
-@Getter
 public enum ServiceType {
     HYBRID_NAILS("Paznokcie hybrydowe bez przedłużania", 60),
     CLASSIC_MANICURE("Manicure klasyczny", 45),
@@ -16,4 +13,11 @@ public enum ServiceType {
         this.durationInMinutes = durationInMinutes;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
 }

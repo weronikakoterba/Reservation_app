@@ -3,6 +3,7 @@ POST http://localhost:8081/reservations
 Content-Type: application/json
 
 {
+  "userId": 1,
   "startTime": "2025-06-01T10:00:00",
   "serviceType": "HYBRID_NAILS",
   "description": "Na urodziny"
@@ -14,43 +15,18 @@ POST http://localhost:8081/reservations
 Content-Type: application/json
 
 {
-  "price": 45,
+  "userId": 2,
   "startTime": "2025-06-01T10:30:00",
   "serviceType": "CLASSIC_MANICURE",
   "description": "Wzorki"
 }
 
+###
 
-### 1. Rejestracja użytkownika
-POST http://localhost:8080/users/register
-Content-Type: application/json
+### Pobierz rezerwacje dla użytkownika 1
+GET http://localhost:8081/reservations/user/1
 
-{
-  "username": "janek111",
-  "email": "janek@example.com",
-  "password": "test123"
-}
+###
 
-### 2. Logowanie i pobranie tokena
-POST http://localhost:8080/users/login
-Content-Type: application/json
-
-{
-  "username": "janek111",
-  "password": "test123"
-}
-
-### pobieranie dostępnych slotów
-GET http://localhost:8081/reservations/available
-
-### pobieranie slotow danego usera
-GET http://localhost:8081/reservations/user/5
-
-### rezerwacja slotu przez usera
-PUT http://localhost:8081/reservations/5/bookWithPayment
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
-
-### rezygnownowanie ze slotu przez usera
-PUT http://localhost:8081/reservations/5/cancel
-Authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
-
+### Usuń rezerwację o ID 1
+DELETE http://localhost:8081/reservations/4
