@@ -31,7 +31,6 @@ public class NotificationService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
-
         mailSender.send(message);
     }
 }
