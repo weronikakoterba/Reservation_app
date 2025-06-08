@@ -19,6 +19,6 @@ public class NotificationController {
     @PostMapping
     public ResponseEntity<String> send(@RequestBody NotificationDTO request) {
         notificationService.sendNotification(request);
-        return ResponseEntity.ok("Powiadomienie zostało wysłane (symulacja).");
+        return ResponseEntity.ok("Powiadomienie zostało wysłane.");
     }
 }
