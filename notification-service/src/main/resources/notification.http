@@ -1,0 +1,10 @@
+### Test POST /notify
+POST http://localhost:8082/notify
+Content-Type: application/json
+
+{
+  "recipient": "s193235@student.pg.edu.pl",
+  "message": "Rezerwacja została potwierdzona!"
+}
+
+
