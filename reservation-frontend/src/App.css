@@ -1,0 +1,230 @@
+body {
+  font-family: 'Segoe UI', Tahoma;
+  background-color: #fcdaf5;
+  margin: 0;
+  padding: 0;
+}
+
+.login-container, .register-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 4rem auto;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form input,
+form button {
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+button {
+  background-color: #c628ae;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+.calendar-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Styl całego kalendarza */
+.react-calendar {
+  background-color: white;
+  color: #2e202d;
+  margin: auto;
+  border: 1px solid #c628ae;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(198, 40, 174, 0.3);
+  padding: 1rem;
+}
+
+/* Dni tygodnia (np. Pn, Wt...) */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #2e202d;
+}
+
+/* Liczby dni */
+.react-calendar__tile {
+  color: #2e202d;
+  background: none;
+}
+
+/* Aktualny dzień */
+.react-calendar__tile--now {
+  background: #fce4f9;
+  border-radius: 6px;
+}
+
+/* Zaznaczony dzień */
+.react-calendar__tile--active {
+  background: #c628ae;
+  color: white;
+  border-radius: 6px;
+}
+
+/* Hover */
+.react-calendar__tile:hover {
+  background: #e1a8e3;
+  color: #2e202d;
+}
+
+/* Nagłówek miesiąca i strzałki */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  background: none;
+  color: #2e202d;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.react-calendar__navigation button:disabled {
+  color: #ccc;
+}
+
+.react-calendar__navigation button:hover {
+  color: #c628ae;
+}
+
+.service-list {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 280px;
+  height: fit-content;
+}
+
+.service-list h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #2e202d;
+}
+
+.service-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-list li {
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #2e202d;
+  padding: 0.75rem;
+  background-color: #fcdaf5;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.service-list li:hover {
+  background-color: #e1a8e3;
+  cursor: pointer;
+}
+
+.duration {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+
+.calendar-container h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2e202d;
+}
+
+.time-slot-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  height: fit-content;
+}
+
+.time-slot-container h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #2e202d;
+}
+
+.time-slot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.time-slot {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #fcdaf5;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  color: #2e202d;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.time-slot:hover {
+  background-color: #e1a8e3;
+}
+
+.calendar-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.service-list label {
+  font-weight: 500;
+  color: #2e202d;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.calendar-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+}
+
+
