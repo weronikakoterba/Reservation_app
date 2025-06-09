@@ -33,7 +33,6 @@ public class PaymentService {
         paymentRepository.save(payment);
 
         try {
-            // Symulacja opóźnienia
             Thread.sleep(500 + (long)(Math.random() * 1500));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

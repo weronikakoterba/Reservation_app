@@ -64,4 +64,14 @@ public class JwtUtil {
         }
         throw new RuntimeException("Missing token");
     }
+
+    public String generateTokenWithExpiry(String username, int minutes) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + minutes * 60 * 1000))
+                .signWith(SECRET_KEY)
+                .compact();
+    }
+
 }

@@ -14,11 +14,6 @@ public class PaymentController {
 
     private final PaymentService paymentService;
 
-    @GetMapping("/health")
-    public String healthCheck() {
-        return "Payment service is running";
-    }
-
     @PostMapping("/process")
     public ResponseEntity<Payment> processPayment(@RequestBody PaymentDto request) {
         Payment paymentResult = paymentService.simulatePayment(request.getUserId(), request.getReservationId(), request.getAmount());

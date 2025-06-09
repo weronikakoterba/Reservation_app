@@ -13,7 +13,6 @@ public class PaymentTransaction {
     private final RestTemplate restTemplate;
 
     public PaymentDTO processPayment(Long userId, Long reservationId, Double amount) {
-        //String url = "http://users-service.reservation-app/users/username/" + username;
         String url = "http://localhost:8082/payment/process";
 
         PaymentRequestDTO paymentRequest = new PaymentRequestDTO(userId, reservationId, amount);

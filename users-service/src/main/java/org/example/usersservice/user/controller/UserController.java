@@ -12,9 +12,9 @@ import org.example.usersservice.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -29,6 +29,9 @@ public class UserController {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @PostMapping("/register")
@@ -45,7 +48,7 @@ public class UserController {
         String password = loginRequest.getPassword();
 
         User user = userService.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             String token = jwtUtil.generateToken(username);
             return ResponseEntity.ok().body(Map.of("token", token));
         }
@@ -112,10 +115,9 @@ public class UserController {
         String username = jwtUtil.extractUsernameFromRequest(request);
         User user = userService.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(requestBody.getOldPassword())) {
-            user.setPassword(requestBody.getNewPassword());
+        if (user != null && passwordEncoder.matches(requestBody.getOldPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(requestBody.getNewPassword()));
             userService.save(user);
-            return ResponseEntity.ok("Password changed successfully");
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Old password is incorrect");
@@ -126,9 +128,47 @@ public class UserController {
         return userService.findByUsername(username);
     }
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "hej coś";
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        User user = userService.findByUsername(username);
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        // Generuj tymczasowy token JWT (na np. 10 minut)
+        String resetToken = jwtUtil.generateTokenWithExpiry(username, 10); // 10 minut
+
+        // Wysyłka wiadomości z linkiem resetującym hasło
+        String resetLink = "http://localhost:8080/reset-password?token=" + resetToken;
+        emailNotification.sendEmail(user.getEmail(), "Kliknij aby zresetować hasło: " + resetLink);
+
+        return ResponseEntity.ok("Reset link sent to email");
     }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> body) {
+        String token = body.get("token");
+        String newPassword = body.get("newPassword");
+
+        try {
+            String username = jwtUtil.extractUsername(token);
+            User user = userService.findByUsername(username);
+
+            if (user != null) {
+                user.setPassword(passwordEncoder.encode(newPassword));
+                userService.save(user);
+                return ResponseEntity.ok("Password has been reset.");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid or expired token");
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password reset failed.");
+    }
+
+
 
 }

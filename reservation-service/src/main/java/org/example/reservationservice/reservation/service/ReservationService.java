@@ -76,8 +76,6 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-
-
     public Reservation cancelReservation(Long reservationId, Long userId) {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono rezerwacji"));

@@ -7,7 +7,6 @@ import org.example.reservationservice.payment.transaction.PaymentTransaction;
 import org.example.reservationservice.reservation.dto.ReservationDTO;
 import org.example.reservationservice.reservation.model.Reservation;
 import org.example.reservationservice.reservation.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.example.reservationservice.reservation.security.JwtUtil;
@@ -26,13 +25,11 @@ public class ReservationController {
     private final PaymentTransaction paymentTransaction;
     private final EmailNotification emailNotification;
 
-    // Admin/Usługodawca tworzy wolny termin
     @PostMapping
     public ResponseEntity<Reservation> create(@RequestBody ReservationDTO dto) {
         return ResponseEntity.ok(reservationService.createSlot(dto));
     }
 
-    // Użytkownik widzi dostępne sloty
     @GetMapping("/available")
     public ResponseEntity<List<Reservation>> getAvailable() {
         return ResponseEntity.ok(reservationService.getAvailableSlots());
@@ -61,14 +58,11 @@ public class ReservationController {
         Long userId = userClient.getUserIdByUsername(username);
         String email = userClient.getEmailByUsername(username);
 
-        // 1. Rezerwacja slota – ale tylko zmiana statusu na PENDING_PAYMENT
         Reservation pendingReservation = reservationService.reservePending(id, userId);
 
-        // 2. Symulacja płatności
         Double amount = pendingReservation.getPrice();
         PaymentDTO payment = paymentTransaction.processPayment(userId, id, amount);
 
-        // 3. Sprawdzenie wyniku płatności
         switch (payment.getStatus()) {
             case SUCCESS:
                 Reservation confirmed = reservationService.confirmReservation(id);
@@ -100,14 +94,11 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.cancelReservation(id, userId));
     }
 
-
-    // Użytkownik widzi swoje rezerwacje
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Reservation>> getByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(reservationService.getByUserId(userId));
     }
 
-    // Usunięcie rezerwacji (np. przez admina)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         reservationService.deleteById(id);

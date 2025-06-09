@@ -3,11 +3,12 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "haniaaaa",
-  "password": "password12345",
-  "email": "hania.gibus@gmail.com"
+  "username": "wera11",
+  "password": "12345",
+  "email": "kulesz.agnieszka@wp.pl"
 }
-### znajdz użytkownika
+
+### Znajdowanie użytkownika
 GET http://localhost:8080/users/username/hania
 
 ### Logowanie użytkownika
@@ -15,9 +16,10 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "hania222",
-  "password": "password12345"
+  "username": "wera11",
+  "password": "12345"
 }
+
 ### Pobieranie danych aktualnie zalogowanego użytkownika
 GET http://localhost:8080/users/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYSIsImlhdCI6MTc0OTI0Njc1MiwiZXhwIjoxNzQ5MjUwMzUyfQ.Z-w-nj3YTkjsoIEJYy64JhBPUM7B5_dd0bbcJtCLKUE
@@ -35,4 +37,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5M
 ### Usuwanie konta
 DELETE http://localhost:8080/users/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5MzM4MTcsImV4cCI6MTc0NzkzNzQxN30.zESsZDdBvf-o8A1E8oAEM7Se5p5MH8iwv-6zSwqIiIE
+
+### Resetowanie hasła
+POST http://localhost:8080/users/forgot-password
+Content-Type: application/json
+
+{
+  "username": "wera11"
+}
+
+### Zmiana hasła
+POST http://localhost:8080/users/reset-password
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZXJhMSIsImlhdCI6MTc0OTUwMDU2NywiZXhwIjoxNzQ5NTAxMTY3fQ.2-mxOfUUtltmI0BlZhHlQ6MrM3kzmOvIu2q462Dq2og",
+  "newPassword": "NoweBezpieczneHaslo123"
+}
 

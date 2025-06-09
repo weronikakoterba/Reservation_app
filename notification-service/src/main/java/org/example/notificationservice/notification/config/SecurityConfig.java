@@ -15,7 +15,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/notify").permitAll()  // 🔓 Zezwól na dostęp
+                        .requestMatchers("/notify").permitAll()
                         .anyRequest().authenticated()
                 );
 
