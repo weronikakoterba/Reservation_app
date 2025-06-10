@@ -9,7 +9,6 @@ Content-Type: application/json
 }
 
 ###
-
 POST http://localhost:8081/reservations
 Content-Type: application/json
 
@@ -20,15 +19,13 @@ Content-Type: application/json
   "description": "Wzorki"
 }
 
-
-
 ### 1. Rejestracja użytkownika
 POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "haniaa",
-  "email": "hania.gibus@gmail.com",
+  "username": "ala12345",
+  "email": "weronikakoterba31@wp.pl",
   "password": "test123"
 }
 
@@ -37,7 +34,7 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "haniaa",
+  "username": "ala12345",
   "password": "test123"
 }
 
@@ -45,12 +42,12 @@ Content-Type: application/json
 GET http://localhost:8081/reservations/available
 
 ### pobieranie slotow danego usera
-GET http://localhost:8081/reservations/user/5
+GET http://localhost:8081/reservations/user/8
 
 ### rezerwacja slotu przez usera
-PUT http://localhost:8081/reservations/5/bookWithPayment
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYWEiLCJpYXQiOjE3NDk0MjM5ODEsImV4cCI6MTc0OTQyNzU4MX0.DZSJ8yiNDGXSLWuA8hUjJUYqIFeDl-PMlhrIjvSjeQ0
+PUT http://localhost:8081/reservations/1/bookWithPayment
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGExMjM0NSIsImlhdCI6MTc0OTU3NjM4MywiZXhwIjoxNzQ5NTc5OTgzfQ.aFFLgLmfZ9pvl4iJHkyhBo2KVNXcnejMkHM847b72iM
 
 ### rezygnownowanie ze slotu przez usera
-PUT http://localhost:8081/reservations/5/cancel
-Authorization: Bearer  eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lazExMSIsImlhdCI6MTc0OTM4MDY3OSwiZXhwIjoxNzQ5Mzg0Mjc5fQ.2iX7g1kNWPLQozyK7zAeajztc8Es-8iGsPXJZxZ0OLc
+PUT http://localhost:8081/reservations/1/cancel
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGExMjM0NSIsImlhdCI6MTc0OTU3NjM4MywiZXhwIjoxNzQ5NTc5OTgzfQ.aFFLgLmfZ9pvl4iJHkyhBo2KVNXcnejMkHM847b72iM

@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: reservation_db
     ports:
-      - "5432:5432"   # udostępni port bazy na hoście (opcjonalne)
+      - "5432:5432"
     networks:
       - reservation-net
 
@@ -35,6 +35,32 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
       - "8080:8080"
+    networks:
+      - reservation-net
+
+  payment-service:
+    image: payment-service
+    depends_on:
+      - reservation-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://reservation-db:5432/reservation_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8082:8082"
+    networks:
+      - reservation-net
+
+  notification-service:
+    image: notification-service
+    depends_on:
+    - reservation-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://reservation-db:5432/reservation_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+       - "8083:8083"
     networks:
       - reservation-net
 
