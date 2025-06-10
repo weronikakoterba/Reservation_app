@@ -88,7 +88,6 @@ public class UserController {
 
         if (existingUser != null) {
             existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setUsername(updatedUser.getUsername());
 
             userService.save(existingUser);
             return ResponseEntity.ok(existingUser);
@@ -115,9 +114,11 @@ public class UserController {
         String username = jwtUtil.extractUsernameFromRequest(request);
         User user = userService.findByUsername(username);
 
+
         if (user != null && passwordEncoder.matches(requestBody.getOldPassword(), user.getPassword())) {
             user.setPassword(passwordEncoder.encode(requestBody.getNewPassword()));
             userService.save(user);
+            return ResponseEntity.ok("Password changed successfully");
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Old password is incorrect");

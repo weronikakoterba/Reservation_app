@@ -3,8 +3,8 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "wera11",
-  "password": "12345",
+  "username": "mamdosc1",
+  "password": "123456",
   "email": "kulesz.agnieszka@wp.pl"
 }
 
@@ -16,22 +16,22 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "wera11",
-  "password": "12345"
+  "username": "mamdosc1",
+  "password": "123456"
 }
 
 ### Pobieranie danych aktualnie zalogowanego użytkownika
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYSIsImlhdCI6MTc0OTI0Njc1MiwiZXhwIjoxNzQ5MjUwMzUyfQ.Z-w-nj3YTkjsoIEJYy64JhBPUM7B5_dd0bbcJtCLKUE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW1kb3NjMSIsImlhdCI6MTc0OTU4MDY0OSwiZXhwIjoxNzQ5NTg0MjQ5fQ._Cm2gSoZY6zYuVhKX58_4bJB72_x1RrSv6YfvY1JMWI
 
 ### Zmiana hasła
 POST http://localhost:8080/users/change-password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqamp6YW0iLCJpYXQiOjE3NDc5MzM4MTcsImV4cCI6MTc0NzkzNzQxN30.zESsZDdBvf-o8A1E8oAEM7Se5p5MH8iwv-6zSwqIiIE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW1kb3NjIiwiaWF0IjoxNzQ5NTgwMjEwLCJleHAiOjE3NDk1ODM4MTB9.CGnqicMXleUpLJVUG5AnCYbRFAYjXhAHnrhnGGbNKzE
 
 {
-  "oldPassword": "password1234",
-  "newPassword": "newpassword456"
+  "oldPassword": "12345",
+  "newPassword": "456"
 }
 
 ### Usuwanie konta
@@ -54,4 +54,6 @@ Content-Type: application/json
   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZXJhMSIsImlhdCI6MTc0OTUwMDU2NywiZXhwIjoxNzQ5NTAxMTY3fQ.2-mxOfUUtltmI0BlZhHlQ6MrM3kzmOvIu2q462Dq2og",
   "newPassword": "NoweBezpieczneHaslo123"
 }
+
+
 

@@ -137,7 +137,7 @@ const UserPage = () => {
         ) : (
           <button className="button edit" onClick={() => setIsEditing(true)}>
             <FaEdit className="edit-icon" />
-            Edytuj dane
+            Edytuj e-mail
           </button>
         )}
 
