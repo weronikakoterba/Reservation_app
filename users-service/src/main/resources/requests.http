@@ -3,21 +3,21 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "wera112345",
+  "username": "ala12345",
   "password": "12345",
   "email": "weronikakoterba31@wp.pl"
 }
 
 ### Znajdowanie użytkownika
-GET http://localhost:8080/users/username/hania
+GET http://localhost:8080/users/username/ala1234
 
 ### Logowanie użytkownika
 POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "wera11",
-  "password": "12345"
+  "username": "ala12345",
+  "password": "hania123"
 }
 
 ### Pobieranie danych aktualnie zalogowanego użytkownika
@@ -43,7 +43,7 @@ POST http://localhost:8080/users/forgot-password
 Content-Type: application/json
 
 {
-  "username": "wera11"
+  "username": "ala12345"
 }
 
 ### Zmiana hasła
@@ -51,7 +51,7 @@ POST http://localhost:8080/users/reset-password
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZXJhMSIsImlhdCI6MTc0OTUwMDU2NywiZXhwIjoxNzQ5NTAxMTY3fQ.2-mxOfUUtltmI0BlZhHlQ6MrM3kzmOvIu2q462Dq2og",
-  "newPassword": "NoweBezpieczneHaslo123"
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGExMjM0NSIsImlhdCI6MTc0OTU3NjY0NCwiZXhwIjoxNzQ5NTc3MjQ0fQ.vnoVS9inlirRL8eGK61TyYRjAKxAcx0hrwxfoIYyK7k",
+  "newPassword": "hania123"
 }
 

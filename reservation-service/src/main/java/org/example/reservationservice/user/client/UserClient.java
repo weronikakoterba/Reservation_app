@@ -24,7 +24,7 @@ public class UserClient {
 
     public String getEmailByUsername(String username) {
         //String url = "http://users-service.reservation-app/users/username/" + username;
-        String url = "http://localhost:8080/users/username/" + username;
+        String url = "http://users-service:8080/users/username/" + username;
         UserDTO user = restTemplate.getForObject(url, UserDTO.class);
 
         if (user == null) {

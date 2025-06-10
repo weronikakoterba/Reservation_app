@@ -18,8 +18,10 @@ spec:
           image: weronikakoterba/users-service:latest
           imagePullPolicy: Always
           env:
+#            - name: SPRING_DATASOURCE_URL
+#              value: jdbc:postgresql://reservation-db:5432/reservation_db
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://reservation-db:5432/reservation_db
+              value: jdbc:postgresql://reservation-db.reservation-app.svc.cluster.local:5432/reservation_db
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD

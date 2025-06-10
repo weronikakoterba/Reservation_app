@@ -17,7 +17,8 @@ fi
 
 DOCKERHUB_USER="$1"
 SERVICES=("notification-service" "payment-service" "reservation-service" "users-service")
-K8S_MANIFEST_DIR="./k8s"
+K8S_DIR="./k8s"
+K8S_SERVICES_DIR="./k8s/services"
 
 echo -e "${BLUE}🚀 Budowanie i wysyłanie obrazów Docker dla użytkownika: $DOCKERHUB_USER${NC}\n"
 
@@ -72,9 +73,14 @@ for SERVICE in "${SERVICES[@]}"; do
 done
 
 # Wdrażanie do Kubernetesa
-if [ -d "$K8S_MANIFEST_DIR" ]; then
-    echo -e "${YELLOW}☸️  Wdrażam konfiguracje Kubernetes z folderu: $K8S_MANIFEST_DIR${NC}"
-    kubectl apply -f "$K8S_MANIFEST_DIR"
+if [ -d "$K8S_DIR" ]; then
+    echo -e "${YELLOW}☸️  Wdrażam konfiguracje Kubernetes z folderu: $K8S_DIR${NC}"
+    kubectl apply -f "$K8S_DIR"
+fi
+
+if [ -d "$K8S_SERVICES_DIR" ]; then
+    echo -e "${YELLOW}☸️  Wdrażam konfiguracje Kubernetes z folderu: $K8S_SERVICES_DIR${NC}"
+    kubectl apply -f "$K8S_SERVICES_DIR"
 
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}✅ Kubernetes zaktualizowany pomyślnie!${NC}"
