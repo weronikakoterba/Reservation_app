@@ -227,4 +227,19 @@ input[type="checkbox"] {
   min-width: 300px;
 }
 
+.user-icon {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 2.5rem;
+  color: #c628ae;
+  cursor: pointer;
+  z-index: 1000;
+  transition: color 0.3s ease;
+}
+
+.user-icon:hover {
+  color: #2e202d;
+}
+
 
