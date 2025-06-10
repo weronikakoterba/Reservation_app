@@ -20,6 +20,11 @@ const CalendarPage = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(null);
   const [availableReservations, setAvailableReservations] = useState([]);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [pendingReservationId, setPendingReservationId] = useState(null);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState('');
+
   const navigate = useNavigate();
 
   const goToUserPanel = () => {
@@ -50,35 +55,50 @@ const CalendarPage = () => {
       });
   };
 
-  const handleReservationSubmit = async (slot) => {
-    if (!selectedService || !date) return;
+  const handleSlotClick = (slot) => {
+    setSelectedSlot(slot);
+    setPaymentMessage('');
+  };
 
-    const selectedServiceObj = services.find(s => s.name === selectedService);
-    if (!selectedServiceObj) return;
+  const handleBookingWithPayment = async () => {
+    if (!selectedSlot || !date) return alert('Wybierz datę i godzinę');
 
-    const [hour, minute] = slot.split(':').map(Number);
-    const startDate = new Date(date);
-    startDate.setHours(hour, minute, 0, 0);
+    const matchedReservation = availableReservations.find(r => {
+      const d = new Date(r.startTime);
+      const slotTime = selectedSlot.split(':').map(Number);
+      return (
+        d.toDateString() === date.toDateString() &&
+        d.getHours() === slotTime[0] &&
+        d.getMinutes() === slotTime[1]
+      );
+    });
 
-    const reservationData = {
-      startTime: startDate.toISOString(),
-      price: selectedServiceObj.price,
-      description: selectedServiceObj.description,
-      serviceType: selectedServiceObj.type,
-    };
+    if (!matchedReservation) return alert('Nie znaleziono rezerwacji dla wybranego terminu.');
 
     const token = localStorage.getItem('token');
 
     try {
-      await axios.post('http://localhost:8081/reservations', reservationData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      alert('Rezerwacja zapisana!');
+      setIsProcessingPayment(true);
+      setPaymentMessage('⏳ Przetwarzanie płatności...');
+
+      const response = await axios.put(
+        `http://localhost:8081/reservations/${matchedReservation.id}/bookWithPayment`,
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setPaymentMessage('✅ Rezerwacja została potwierdzona i opłacona!');
+      setSelectedSlot(null);
+      setDate(null);
     } catch (err) {
-      console.error('Błąd rezerwacji:', err);
-      alert('Nie udało się zapisać rezerwacji.');
+      console.error('Błąd rezerwacji z płatnością:', err);
+      setPaymentMessage('❌ Nie udało się dokonać rezerwacji z płatnością.');
+    } finally {
+      setIsProcessingPayment(false);
     }
   };
 
@@ -125,17 +145,37 @@ const CalendarPage = () => {
           <ul className="time-slot-list">
             {generateTimeSlots().map((slot, idx) => {
               const isTaken = getTakenSlots(date).includes(slot);
+              const isSelected = selectedSlot === slot;
               return (
                 <li
                   key={idx}
-                  className={`time-slot ${isTaken ? 'disabled' : ''}`}
-                  onClick={() => !isTaken && handleReservationSubmit(slot)}
+                  className={`time-slot ${isTaken ? 'disabled' : ''} ${isSelected ? 'selected' : ''}`}
+                  onClick={() => !isTaken && handleSlotClick(slot)}
                 >
                   {slot}
                 </li>
               );
             })}
           </ul>
+
+          {/* Komunikat płatności */}
+          {paymentMessage && (
+            <div style={{ marginTop: '10px', fontWeight: 'bold', color: isProcessingPayment ? 'blue' : paymentMessage.includes('✅') ? 'green' : 'red' }}>
+              {paymentMessage}
+            </div>
+          )}
+
+          {/* Przycisk rezerwacji */}
+          {selectedSlot && (
+            <button
+              className="button reserve-button"
+              style={{ float: 'right', marginTop: '10px' }}
+              onClick={handleBookingWithPayment}
+              disabled={isProcessingPayment}
+            >
+              {isProcessingPayment ? 'Przetwarzanie...' : 'Zarezerwuj'}
+            </button>
+          )}
         </div>
       )}
     </div>

@@ -242,4 +242,124 @@ input[type="checkbox"] {
   color: #2e202d;
 }
 
+.user-page-container {
+  display: flex;
+  padding: 40px;
+  justify-content: center;
+  background-color: #fcdaf5;
+  min-height: 10vh;
+}
+
+.user-info {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.button-group,
+.password-form {
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.button.save {
+  background-color: #c628ae;
+  color: white;
+}
+
+.button.cancel {
+  background-color: #2e202d;
+  color: white;
+}
+
+.button.edit {
+  background-color: #c628ae;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.edit-icon {
+  font-size: 18px;
+}
+
+.button.password {
+  background-color: #2e202d;
+  color: white;
+  margin-top: 20px;
+}
+
+.password-form {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.message {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #dc3545;
+}
+
+.flex-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.left-panel {
+  flex: 1;
+  min-width: 300px;
+}
+
+.right-panel {
+  flex: 1;
+  min-width: 300px;
+  border-left: 1px solid #ddd;
+  padding-left: 20px;
+}
+
+.reservation-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.4;
+}
 
