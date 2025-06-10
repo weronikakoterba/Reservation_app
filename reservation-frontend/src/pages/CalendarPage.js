@@ -27,13 +27,13 @@ const CalendarPage = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:8080/services')
+    axios.get('http://localhost:8081/services')
       .then(res => setServices(res.data))
       .catch(err => console.error('Błąd pobierania usług:', err));
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/reservations/available')
+    axios.get('http://localhost:8081/reservations/available')
       .then(res => setAvailableReservations(res.data))
       .catch(err => console.error('Błąd pobierania terminów:', err));
   }, []);
@@ -70,7 +70,7 @@ const CalendarPage = () => {
     const token = localStorage.getItem('token');
 
     try {
-      await axios.post('http://localhost:8080/reservations', reservationData, {
+      await axios.post('http://localhost:8081/reservations', reservationData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
