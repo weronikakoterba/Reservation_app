@@ -13,7 +13,7 @@ public class EmailNotification {
     private final RestTemplate restTemplate;
 
     public void sendEmail(String recipientEmail, String message) {
-        String url = "http://localhost:8083/notify";
+        String url = "http://notification-service:8083/notify";
 
         NotificationDTO notificationDTO = new NotificationDTO();
         notificationDTO.setRecipient(recipientEmail);

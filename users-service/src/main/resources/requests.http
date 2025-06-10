@@ -3,9 +3,9 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "wera11",
+  "username": "wera112345",
   "password": "12345",
-  "email": "kulesz.agnieszka@wp.pl"
+  "email": "weronikakoterba31@wp.pl"
 }
 
 ### Znajdowanie użytkownika

@@ -3,6 +3,6 @@ POST http://localhost:8083/notify
 Content-Type: application/json
 
 {
-  "recipient": "weronikakotebra31@wp.pl",
+  "recipient": "weronikakoterba31@wp.pl",
   "message": "Rezerwacja została potwierdzona!"
 }

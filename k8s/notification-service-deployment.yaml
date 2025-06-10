@@ -16,6 +16,7 @@ spec:
       containers:
         - name: notification-service
           image: weronikakoterba/notification-service:latest
+          imagePullPolicy: Always
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://reservation-db:5432/reservation_db
