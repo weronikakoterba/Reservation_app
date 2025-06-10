@@ -32,7 +32,7 @@ const UserPage = () => {
       setEditedUser(res.data);
 
       if (res.data.id) {
-        axios.get(`http://localhost:8080/user/${res.data.id}`, {
+        axios.get(`http://localhost:8081/reservations/user/${res.data.id}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
         .then(reservRes => {
@@ -194,11 +194,11 @@ const UserPage = () => {
         ) : (
           <ul>
             {reservations.map((res) => (
-              <li key={res.id} className="reservation-item">
-                <strong>Data:</strong> {new Date(res.date).toLocaleDateString()} <br />
-                <strong>Godzina:</strong> {res.time} <br />
-                <strong>Opis:</strong> {res.description || '-'}
-              </li>
+                <li key={res.id} className="reservation-item">
+                  <strong>Data:</strong> {new Date(res.startTime).toLocaleDateString()} <br />
+                  <strong>Godzina:</strong> {new Date(res.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} <br />
+                  <strong>Opis:</strong> {res.description || '-'}
+                </li>
             ))}
           </ul>
         )}
