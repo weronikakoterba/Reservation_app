@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### Pobieranie danych aktualnie zalogowanego użytkownika
 GET http://localhost:8080/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYSIsImlhdCI6MTc0OTI0Njc1MiwiZXhwIjoxNzQ5MjUwMzUyfQ.Z-w-nj3YTkjsoIEJYy64JhBPUM7B5_dd0bbcJtCLKUE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZXJvbmlrYTMzIiwiaWF0IjoxNzQ5NTM4NDk3LCJleHAiOjE3NDk1NDIwOTd9.9XDVp3wleIUlp1Ly7m87CTTB8ecUi6ZHc-UlQZ7X30U
 
 ### Zmiana hasła
 POST http://localhost:8080/users/change-password

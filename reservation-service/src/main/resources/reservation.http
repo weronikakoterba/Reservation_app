@@ -27,7 +27,7 @@ POST http://localhost:8080/users/register
 Content-Type: application/json
 
 {
-  "username": "haniaa",
+  "username": "weronika33",
   "email": "hania.gibus@gmail.com",
   "password": "test123"
 }
@@ -37,7 +37,7 @@ POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "username": "haniaa",
+  "username": "weronika33",
   "password": "test123"
 }
 
@@ -45,11 +45,11 @@ Content-Type: application/json
 GET http://localhost:8081/reservations/available
 
 ### pobieranie slotow danego usera
-GET http://localhost:8081/reservations/user/5
+GET http://localhost:8081/reservations/user/8
 
 ### rezerwacja slotu przez usera
-PUT http://localhost:8081/reservations/5/bookWithPayment
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoYW5pYWEiLCJpYXQiOjE3NDk0MjM5ODEsImV4cCI6MTc0OTQyNzU4MX0.DZSJ8yiNDGXSLWuA8hUjJUYqIFeDl-PMlhrIjvSjeQ0
+PUT http://localhost:8081/reservations/7/bookWithPayment
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ZXJvbmlrYTMzIiwiaWF0IjoxNzQ5NTM4NDk3LCJleHAiOjE3NDk1NDIwOTd9.9XDVp3wleIUlp1Ly7m87CTTB8ecUi6ZHc-UlQZ7X30U
 
 ### rezygnownowanie ze slotu przez usera
 PUT http://localhost:8081/reservations/5/cancel
