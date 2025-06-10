@@ -6,6 +6,7 @@ import org.example.notificationservice.notification.service.NotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/notify")
 public class NotificationController {

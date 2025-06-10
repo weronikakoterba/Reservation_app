@@ -14,6 +14,7 @@ import org.example.reservationservice.user.client.UserClient;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/reservations")
 @RequiredArgsConstructor
