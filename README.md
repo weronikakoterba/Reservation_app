@@ -23,7 +23,7 @@ Upewnij się, że masz zainstalowane:
 ### 1. Sklonuj repozytorium
 
 ```bash
-git clone https://github.com/haniagibus/Reservation-app.git
+git clone https://github.com//weronikakoterba/Reservation_app
 ```
 
 ### 2. Uruchom wszystkie usługi
