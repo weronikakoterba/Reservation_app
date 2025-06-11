@@ -20,7 +20,13 @@ Upewnij się, że masz zainstalowane:
 
 ##  Uruchamianie projektu
 
-### 1. Uruchom wszystkie usługi
+### 1. Sklonuj repozytorium
+
+```bash
+git clone https://github.com/haniagibus/Reservation-app.git
+```
+
+### 2. Uruchom wszystkie usługi
 
 W folderze głównym projektu uruchom skrypt:
 
@@ -29,7 +35,7 @@ W folderze głównym projektu uruchom skrypt:
 ```
 Zastąp $YOUR_DOCKERHUB_LOGIN swoim loginem do Docker Huba.
 
-### 2. Uruchom frontend
+### 3. Uruchom frontend
 Przejdź do folderu z frontendem (frontend-service) i wykonaj:
 
 ```bash
@@ -37,7 +43,7 @@ npm install
 npm start
 ```
 
-### 3. Tunelowanie portów usług (Kubernetes)
+### 4. Tunelowanie portów usług (Kubernetes)
 W celu lokalnego dostępu do usług uruchom następujące komendy w nowych terminalach:
 
 ```bash
