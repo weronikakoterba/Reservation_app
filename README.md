@@ -1,5 +1,7 @@
 # Reservation App
 
+**Autorzy:** [`Weronika Koterba`](https://github.com/weronikakoterba), [`Julita Zamroczyńska`](https://github.com/zamrokjulita)
+
 Aplikacja do zarządzania rezerwacjami z architekturą opartą na mikrousługach.
 
 ---
