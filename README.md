@@ -27,7 +27,7 @@ W folderze głównym projektu uruchom skrypt:
 ```
 Zastąp $YOUR_DOCKERHUB_LOGIN swoim loginem do Docker Huba.
 
-2. Uruchom frontend
+### 2. Uruchom frontend
 Przejdź do folderu z frontendem (frontend-service) i wykonaj:
 
 ```bash
@@ -35,7 +35,7 @@ npm install
 npm start
 ```
 
-3. Tunelowanie portów usług (Kubernetes)
+### 3. Tunelowanie portów usług (Kubernetes)
 W celu lokalnego dostępu do usług uruchom następujące komendy w nowych terminalach:
 
 ```bash
